@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Login(props) {
   const { username, password } = props.values;
-  const {update, submit} = props;
+  const { update, submit } = props;
 
   const handleChange = evt => {
     const {name, value} = evt.target;

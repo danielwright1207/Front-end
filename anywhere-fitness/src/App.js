@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login';
+import * as yup from 'yup';
+import schema from './validation/SignupSchema';
 
 const initialLoginValues = {
   username: '',
@@ -9,13 +11,13 @@ const initialLoginValues = {
 }
 
 function App() {
-  const [loginValues, setLoginValues] = useState(initialLoginValues)
+  const [loginValues, setLoginValues] = useState(initialLoginValues);
 
-  const update = (name, value) => {
-    setLoginValues({...loginValues, [name]:value})
+  const updateLogin = (name, value) => {
+    setLoginValues({ ...loginValues, [name]:value });
   }
 
-  const submit = () => {
+  const submitLogin = () => {
     console.log("Here are the submitted values", {loginValues});
     setLoginValues(initialLoginValues);
   }
@@ -23,7 +25,11 @@ function App() {
   return (
     <div>
       <Route path='/login'>
-        <Login values={loginValues} update={update} submit={submit} />
+        <Login
+          values={loginValues}
+          update={updateLogin}
+          submit={submitLogin}
+        />
       </Route>
     </div>
   );
