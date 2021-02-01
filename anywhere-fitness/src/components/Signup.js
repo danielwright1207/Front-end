@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Signup(props) {
   const { username, password, role } = props.values;
-  const {update, submit, errors} = props;
+  const { update, submit, errors, disabled } = props;
 
   const handleChange = evt => {
     const { name, value} = evt.target;
@@ -25,7 +25,7 @@ export default function Signup(props) {
             onChange={handleChange}
           />
         </label>
-        <span></span>
+        <span>{errors.username}</span>
         <label> Password: 
         <input 
             type='password'
@@ -34,7 +34,7 @@ export default function Signup(props) {
             onChange={handleChange}
           />
         </label>
-        <span></span>
+        <span>{errors.password}</span>
         <label> Role: 
           <select name='role' value={role} onChange={handleChange}>
             <option value=''>---select your role---</option>
@@ -42,8 +42,8 @@ export default function Signup(props) {
             <option value='client'>Client</option>
           </select>
         </label>
-        <span></span>
-        <button onClick={handleSubmit}>Create new account</button>
+        <span>{errors.role}</span>
+        <button onClick={handleSubmit} disabled={disabled}>Create new account</button>
       </form>
     </div>
   )

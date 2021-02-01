@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login';
@@ -27,12 +27,23 @@ function App() {
   const [loginValues, setLoginValues] = useState(initialLoginValues);
   const [signupValues, setSignupValues] = useState(initialSignupValues);
   const [signupErrors, setSignupErrors] = useState(initialSignupErrors);
+  const [disabled, setDisabled] = useState(true)
 
   const updateLogin = (name, value) => {
     setLoginValues({ ...loginValues, [name]:value });
   }
 
   const updateSignup = (name, value) => {
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => {
+        setSignupErrors({ ...signupErrors, [name]:'' })
+      })
+      .catch(err => {
+        setSignupErrors({ ...signupErrors, [name]:err.errors[0] })
+      });
+
     setSignupValues( { ...signupValues, [name]:value });
   }
 
@@ -45,6 +56,10 @@ function App() {
     console.log("Here are the submitted values", {signupValues});
     setSignupValues(initialSignupValues);
   }
+
+  useEffect(()=> {
+    schema.isValid(signupValues).then(valid => setDisabled(!valid))
+  }, [signupValues])
 
   return (
     <div>
@@ -61,6 +76,7 @@ function App() {
           update={updateSignup}
           submit={submitSignup}
           errors={signupErrors}
+          disabled={disabled}
         />
       </Route>
     </div>
