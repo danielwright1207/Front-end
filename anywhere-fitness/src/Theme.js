@@ -1,4 +1,4 @@
 export default {
-    linkBGColor: 'gray',
-    headColor: 'white',
-}
+  linkBGColor: "gray",
+  headColor: "white",
+};
