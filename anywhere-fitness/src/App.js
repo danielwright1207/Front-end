@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Link } from 'react-router-dom';
-import './App.css';
+// import './App.css';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Home from './components/Home';
@@ -74,7 +74,7 @@ function App() {
       </nav>
     <div>
       <Route exact path='/'>
-        {/* <Home /> */}
+        <Home />
       </Route>
       <Route path='/login'>
         <Login
