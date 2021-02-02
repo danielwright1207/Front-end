@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Signup(props) {
-  const { username, password, role } = props.values;
+  const { name, email, username, password, role } = props.values;
   const { update, submit, errors, disabled } = props;
 
   const handleChange = evt => {
@@ -17,6 +17,24 @@ export default function Signup(props) {
   return (
     <div>
       <form>
+      <label> Name:
+          <input 
+            type='text'
+            name='name'
+            value={name}
+            onChange={handleChange}
+          />
+          </label>
+          <span>{errors.name}</span>
+          <label> Email: 
+          <input 
+            type='email'
+            name='email'
+            value={email}
+            onChange={handleChange}
+          />
+          </label>
+          <span>{errors.email}</span>
         <label> Username: 
           <input 
             type='text'

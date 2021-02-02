@@ -13,12 +13,16 @@ const initialLoginValues = {
 }
 
 const initialSignupValues = {
+  name: '',
+  email: '',
   username: '',
   password: '',
   role: ''
 }
 
 const initialSignupErrors = {
+  name: '',
+  email: '',
   username: '',
   password: '',
   role: ''
