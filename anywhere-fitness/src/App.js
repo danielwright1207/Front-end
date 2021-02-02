@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Route } from 'react-router-dom';
-import './App.css';
+import { Route, Link } from 'react-router-dom';
+// import './App.css';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import Home from './components/Home';
 import * as yup from 'yup';
 import schema from './validation/SignupSchema';
 
@@ -63,6 +64,18 @@ function App() {
 
   return (
     <div>
+      <nav>
+        <h1 className='app-head'>Anywhere Fitness</h1>
+        <div>
+        <Link to='/'>Home</Link>
+        <Link to='/login'>Login</Link>
+        <Link to='/signup'>Signup</Link>
+        </div>
+      </nav>
+    <div>
+      <Route exact path='/'>
+        <Home />
+      </Route>
       <Route path='/login'>
         <Login
           values={loginValues}
@@ -79,6 +92,7 @@ function App() {
           disabled={disabled}
         />
       </Route>
+    </div>
     </div>
   );
 }
