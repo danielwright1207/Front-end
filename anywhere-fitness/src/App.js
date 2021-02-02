@@ -6,6 +6,8 @@ import Signup from './components/Signup';
 import Home from './components/Home';
 import * as yup from 'yup';
 import schema from './validation/SignupSchema';
+import styled from 'styled-components';
+import BGImage from './images/image.jpg';
 
 const initialLoginValues = {
   username: '',
@@ -68,14 +70,13 @@ function App() {
 
   return (
     <div>
-      <nav>
-        <h1 className='app-head'>Anywhere Fitness</h1>
-        <div>
-        <Link to='/'>Home</Link>
-        <Link to='/login'>Login</Link>
-        <Link to='/signup'>Signup</Link>
-        </div>
-      </nav>
+      <StyledBGImage>
+        <StyledLink>
+        <StyledHead>Anywhere Fitness</StyledHead>
+        <Link style={{textDecoration:'none'}} to='/'>Home</Link>
+        <Link style={{textDecoration:'none'}} to='/login'>Login</Link>
+        <Link style={{textDecoration:'none'}} to='/signup'>Signup</Link>
+        </StyledLink>
     <div>
       <Route exact path='/'>
         <Home />
@@ -97,8 +98,37 @@ function App() {
         />
       </Route>
     </div>
+    </StyledBGImage>
     </div>
   );
 }
+
+const StyledLink = styled.div`
+
+  display:flex;
+  flex-flow:row nowrap;
+  justify-content:space-around;
+  align-items: baseline;
+
+  a {
+    border: 2px solid black;
+    border-radius: 20%;
+    padding: 4px 4px;
+    background-color: ${pr => pr.theme.linkBGColor};
+  }
+`;
+
+const StyledBGImage = styled.div`
+
+  background-image: url(${BGImage});
+  background-repeat:no-repeat;
+  background-size: 100%;
+`;
+
+const StyledHead = styled.h1`
+
+color: ${pr => pr.theme.headColor};
+
+`;
 
 export default App;
